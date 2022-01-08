@@ -29,6 +29,30 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
+function addNote(body, noteArray) {
+    const newNote = body;
+
+    if(!Array.isArray(noteArray))
+    noteArray = [];
+
+    if(noteArray.length === 0)
+    noteArray.push(0);
+
+    body.id = noteArray[0];
+    noteArray[0]++;
+
+    noteArray.push(newNote);
+    fs.writeFileSync(path.join(__dirname, './db/db.json'),
+    JSON.stringify(noteArray, null, 2)
+    );
+    return newNote;
+}
+
+app.post('/api/notes', (req, res) => {
+    const newNote = addNote(req.body, notesFile);
+    res.json(newNote);
+});
+
 // links to file apiRoutes in routes folder
 // app.use('/api', apiRoutes);
 // links to file htmlRoutes in routes folder
