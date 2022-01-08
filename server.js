@@ -53,11 +53,6 @@ app.post('/api/notes', (req, res) => {
     res.json(newNote);
 });
 
-// links to file apiRoutes in routes folder
-// app.use('/api', apiRoutes);
-// links to file htmlRoutes in routes folder
-// app.use('/', htmlRoutes);
-
 app.listen(PORT, () => {
-    console.log(`API server now on port ${PORT}!`);
+    console.log(`Server is now running on port ${PORT}!`);
 });
